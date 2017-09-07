@@ -13,7 +13,8 @@ const removeOptions = {
 
 module.exports = {
     entry: {
-        app: './src/index.js'
+        a: ['./src/polyfill.js'],
+        main: './src/index.js'
     },
     output: {
         path: path.join(__dirname, 'dist'),

@@ -13,10 +13,21 @@ module.exports = Merge(CommonConfig, {
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         port: 3001,
-        hot: true
+        hot: true,
+        historyApiFallback: true,
+        proxy: {
+            '/api/**': {
+                target: "http://localhost:3000"
+            }
+        }
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new HtmlWebpackPlugin(htmlOptions)
+        new HtmlWebpackPlugin(htmlOptions),
+        new webpack.DefinePlugin({
+            'process.env':{
+                'NODE_ENV': JSON.stringify('dev')
+            }
+        })
     ]
 });
